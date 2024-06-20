@@ -7,6 +7,7 @@ export default function App({ Component, pageProps }) {
     <SWRConfig
       value={{
         fetcher: async (...args) => {
+          console.log("Fetching with args:", args);
           const response = await fetch(...args);
           if (!response.ok) {
             throw new Error(`Request with ${JSON.stringify(args)} failed.`);
