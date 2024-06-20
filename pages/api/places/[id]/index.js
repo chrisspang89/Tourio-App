@@ -38,6 +38,10 @@ export default async function handler(request, response) {
         .status(500)
         .json({ status: "Internal Server Error", error: error.message });
     }
+  } else if (request.method === "DELETE") {
+    await Place.findByIdAndDelete(id);
+
+    response.status(200).json({ status: `Place ${id} successfully deleted.` });
   } else {
     return response.status(405).json({ status: "Method not allowed" });
   }
